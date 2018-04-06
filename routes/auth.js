@@ -13,27 +13,13 @@ router.get("/register", function(req, res) {
 
 router.post("/register", function(req, res) {
     console.log(req.body.username);
-    var newUser = new User({username: req.body.username
-    password: req.body.password});
-
-    User.create(newUser, function (err, user) {
-    if (err) {
-      return next(err)
-    } else {
-      return res.redirect('/login');
-    }
-  });
-    //include after newUser in User.register - , req.body.password
-    User.register(newUser, function(err, user){
+    var newUser = new User({username: req.body.username});
+    User.register(newUser, req.body.password, function(err, user){
        if(err){
            console.log(err);
            return res.render("register", {error: err.message});
        }
-
-       passport.authenticate("local",{
-         successRedirect: 'new',
-         failureRedirect: '/register'
-       })(req, res, function(){
+       passport.authenticate("local")(req, res, function(){
            req.flash("success", "Welcome to blog site, " + user.username + "!");
            res.redirect("/blogs");
        });

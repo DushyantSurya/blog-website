@@ -18,7 +18,7 @@ var commentRoutes = require("./routes/comments");
 
 var port = process.env.PORT || 3000;
 //App Config
-mongoose.connect(process.env.NONGODB_URI || "mongodb://localhost:27017/blog_site", {useMongoClient: true});
+mongoose.connect("mongodb://dee_database:password.mlab.com:37389/blog_site", {useMongoClient: true});
 mongoose.Promise = global.Promise;
 app.set("view engine", "ejs");
 app.use(express.static("public"));
@@ -29,7 +29,7 @@ app.use(flash());
 
 //Passport Config
 app.use(require("express-session")({
-    secret: "This blog is made by most beautiful puppy",
+    secret: "you are the secret",
     resave: false,
     saveUninitialized: false
 }));
@@ -57,7 +57,7 @@ app.use("/blogs/:id/comments", commentRoutes);
 app.get("/", function(req, res){
     res.redirect("blogs");
 });
-//, process.env.IP (include after port)
-app.listen(port, function(){
+
+app.listen(port, process.env.IP, function(){
     console.log("SERVER IS STARTED");
 })

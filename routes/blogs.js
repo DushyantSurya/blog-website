@@ -16,7 +16,7 @@ router.get("/", function(req, res){
 
 //NEW ROUTE
 router.get("/new", middleware.isLoggedIn, function(req, res){
-    res.render("new"); 
+    res.render("new");
 });
 
 //CREATE ROUTE
@@ -30,7 +30,7 @@ router.post("/", middleware.isLoggedIn, function(req, res){
             newBlog.author.id = req.user._id;
             newBlog.author.username = req.user.username;
             newBlog.save();
-            
+
             //redirect to index
             req.flash("success", "Your blog " + newBlog.title + " is successfully added!");
             res.redirect("/blogs");
@@ -90,30 +90,30 @@ router.delete("/:id", middleware.checkOwnershipPost, function(req, res){
 });
 
 // //add middleware isLoggedIn
-// function isLoggedIn(req, res, next){
-//     if(req.isAuthenticated()){
-//         return next();
-//     }
-//     res.redirect("/login");
-// }
+function isLoggedIn(req, res, next){
+    if(req.isAuthenticated()){
+        return next();
+    }
+    res.redirect("/login");
+}
 
 // //add another middleware for checking authorization
-// function checkOwnershipPost(req, res, next){
-//     if(req.isAuthenticated()){
-//         if(Blog.findById(req.params.id, function(err, foundBlog) {
-//             if(err){
-//                 res.redirect("/blogs");
-//             } else{
-//                 if(req.user._id.equals(foundBlog.author.id)){
-//                     next();
-//                 } else{
-//                     res.redirect("back");
-//                 }
-//             }
-//         }));
-//     } else {
-//         res.redirect("back");
-//     }
-// }
+function checkOwnershipPost(req, res, next){
+    if(req.isAuthenticated()){
+        if(Blog.findById(req.params.id, function(err, foundBlog) {
+            if(err){
+                res.redirect("/blogs");
+            } else{
+                if(req.user._id.equals(foundBlog.author.id)){
+                    next();
+                } else{
+                    res.redirect("back");
+                }
+            }
+        }));
+    } else {
+        res.redirect("back");
+    }
+}
 
 module.exports = router;
