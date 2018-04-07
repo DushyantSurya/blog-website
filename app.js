@@ -18,9 +18,15 @@ var commentRoutes = require("./routes/comments");
 
 var port = process.env.PORT || 3000;
 //App Config
-mongoose.connect("mongodb://dee_database:password.mlab.com:37389/blog_site", {useMongoClient: true});
+var db = null;
+db = mongoose.connect("mongodb://khanh:blog@ds237489.mlab.com:37489/blog_site", {useMongoClient: true});
+
 mongoose.Promise = global.Promise;
 app.set("view engine", "ejs");
+app.all('*', (req, res, next) => {
+    req.db = db;
+    next();
+});
 app.use(express.static("public"));
 app.use(expressSanitizer()); //this code MUST BE BEFORE bodyParser
 app.use(bodyParser.urlencoded({extended: true}));
@@ -57,7 +63,7 @@ app.use("/blogs/:id/comments", commentRoutes);
 app.get("/", function(req, res){
     res.redirect("blogs");
 });
-
-app.listen(port, process.env.IP, function(){
+//, process.env.IP
+app.listen(port, function(){
     console.log("SERVER IS STARTED");
 })

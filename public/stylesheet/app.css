@@ -8,13 +8,21 @@
 .ui.message{
     width: 50%;
     position: relative;
-    left: 25%;  
+    left: 25%;
 }
 
+
+
 #love-u{
-  margin-top: 10px;
-  padding-bottom: 55px;
+  margin-top: 0px;
+  padding-bottom: 230px;
   position: relative;
+}
+
+.item{
+  font-family: georgia;
+  font-size: 20px;
+  padding-top: 20px;
 }
 
 .footer {

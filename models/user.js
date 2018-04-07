@@ -3,26 +3,9 @@ var passportLocalMongoose = require("passport-local-mongoose");
 const validator = require('validator');
 
 var UserSchema = new mongoose.Schema({
-     // username: String,
-     // password: String
-    username:{
-    type: String,
-    required: true,
-    unique: true,
-    minlength: 6,
-    trim: true,
-    validate: {
-      validator: (value)=>{
-        return validator.isEmail(value);
-      },
-      message: '{value} is not an email'
-    }
-  },
-  password:{
-    type: String,
-    required: true,
-    minlength: 6
-  }
+     username: String,
+     password: String
+
   // tokens:[{
   //   access: {
   //     type: String,

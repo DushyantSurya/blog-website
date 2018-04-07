@@ -1,15 +1,21 @@
 <% include ./partials/header %>
 
-<h1>Log In Form</h1>
+<div class="ui huge header" style="color:#262626; padding-top: 10px; padding-left: 10px"><b style="background-color:#d9d9d9; opacity:0.5; border-radius:5px; padding:5px 5px 5px 5px">Enter the Room</b></div>
 <form action="/login" method="POST">
-    <div class="ui massive form">
+    <div class="ui massive form" >
       <div class="two fields">
         <div class="field">
-          <label>Username</label>
+          <div  >
+            <b style="background-color:#d9d9d9; border-radius:5px; padding:5px 5px 5px 5px; font-family:georgia">Username</b>
+          </div>
+          <label class="label"></label>
           <input placeholder="Username" type="text" name="username">
         </div>
         <div class="field">
-          <label>Password</label>
+          <div >
+          <b style="background-color:#d9d9d9; border-radius:5px; padding:5px 5px 5px 5px; font-family:georgia">Password</b>
+          </div>
+          <label class="label"></label>
           <input placeholder="Password" type="password" name="password">
         </div>
       </div>

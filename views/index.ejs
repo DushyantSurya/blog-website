@@ -1,16 +1,16 @@
 <% include ./partials/header %>
 
-<div class="ui main text container">
-    <div class="ui huge header">Blog List</div>
-        <div class="ui top attached segment">
-            <div class="ui divided items">
+<div class="ui main text container ">
+    <div class="ui huge header" style="color:#262626; padding-top: 10px"><b style="background-color:#d9d9d9; border-radius:5px; padding:5px 5px 5px 5px; font-family:bookman ">Blog List</b></div>
+        <div class="ui top attached segment" style="background-color:#C0C0C0; padding:5px 5px 5px 5px">
+            <div class="ui divided items" >
                 <% allBlogs.forEach(function(blog){ %>
                     <div class="item">
                         <div class="ui small image">
                           <img class="ui centered rounded image" src="<%= blog.image %>" />
                         </div>
                         <div class="content">
-                            <div class="header""><%= blog.title %></div>
+                            <div class="header" style="font-family:georgia"><%= blog.title %></div>
                             <div class="meta">
                                 <span><%= blog.date.toDateString() %></span>
                             </div>

@@ -1,15 +1,15 @@
 <% include ./partials/header %>
 
-<div class="ui main text container">
-    <div class="ui huge header"><%= blog.title %></div>
+<div class="ui main text container" >
+    <div class="ui huge header" ><b style="background-color:#d9d9d9; opacity:0.5; border-radius:5px; padding:5px 5px 5px 5px"><%= blog.title %></b></div>
         <div class="ui top attached segment">
             <div class="item">
-                <img class="ui centered rounded image" src="<%= blog.image %>" />
+                <img class="ui centered rounded image" src="<%= blog.image %>"  />
             </div>
             <div class="content">
                  <span>Date: <%= blog.date.toDateString() %></span>
             </div>
-            <div class="description">
+            <div class="description" >
                <p><%- blog.body %></p>
                <p><em>Posted By <%= blog.author.username %></em></p>
             </div>
@@ -22,14 +22,17 @@
             <% } %>
         </div>
     <div class="ui comments">
-        <h3 class="ui dividing header">Comments</h3>
+      <div class="ui dividing header">
+        <b style="background-color:#d9d9d9; opacity:0.5; border-radius:5px; padding:5px 5px 5px 5px">Comments</b>
+      </div>
+
             <div class="comment">
               <form class="ui reply form" action="/blogs/<%= blog._id %>/comments" method="POST">
                 <div class="field">
                   <textarea name="text" placeholder="Write your opinion"></textarea>
                 </div>
                 <div class="inline field">
-                  <button class="ui inverted green button"><i class="icon edit"></i>Leave your comment</button>
+                  <button class="ui inverted green button" style="background-color:#66ff66; color: #008800 "><i class="icon edit"></i>Leave your comment</button>
                   <div class="ui left pointing red basic label">
                        <i class="warning circle icon"></i>Please log in or sign up first before comment anything!<br> Otherwise you will lose your current comment.
                   </div>
@@ -44,12 +47,12 @@
                       <img src="https://semantic-ui.com/images/avatar/small/jenny.jpg">
                     </a>
                     <div class="content">
-                        <a class="author"><%= comment.author.username %></a>
+                        <a class="author" style="background-color:#d9d9d9; opacity:0.5; border-radius:2px; padding:2px 2px 2px 2px"><%= comment.author.username %></a>
                         <div class="metadata">
-                            <span class="date"><%= comment.date.toDateString() %></span>
+                            <span class="date" style="color:white"><%= comment.date.toDateString() %></span>
                         </div>
                         <div class="text">
-                            <p><%= comment.text %></p>
+                            <p style="background-color:#dfbf9f; opacity:0.5; border-radius:2px; padding:2px 2px 2px 2px"><%= comment.text %></p>
                         </div>
                         <% if(currentUser && comment.author.id.equals(currentUser._id)){ %>
                             <div class="mini ui buttons">
